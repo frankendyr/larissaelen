@@ -59,6 +59,11 @@
         .faq-answer.active {
             max-height: 200px; /* Altura suficiente para o texto */
         }
+        
+        /* Ajuste fino para a imagem não estourar containers arredondados */
+        .rounded-image-container {
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
     </style>
 </head>
 <body class="bg-rose-50/30 text-gray-700">
@@ -126,7 +131,8 @@
         </div>
 
         <div class="container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2 space-y-6">
+            <!-- Text Content -->
+            <div class="lg:w-1/2 space-y-6 text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-rose-100 rounded-full text-rose-600 font-medium text-sm">
                     <i data-lucide="star" class="fill-current w-4 h-4"></i>
                     Especialista em fotografia infantil
@@ -134,10 +140,10 @@
                 <h1 class="text-4xl lg:text-6xl font-serif text-gray-800 leading-tight">
                     Eternize o primeiro aninho do seu <span class="text-rose-500 italic">maior amor</span>.
                 </h1>
-                <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
-                    Ensaios Smash the Cake, Gestante e Família com todo o conforto, segurança e carinho que sua família merece. Você vive o momento, nós guardamos a memória.
+                <p class="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    Ensaios Smash the Cake, Gestante e Família com todo o conforto, segurança e carinho que sua família merece.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                     <a href="#investimento" class="bg-rose-500 hover:bg-rose-600 text-white px-8 py-4 rounded-full text-center font-medium transition shadow-lg hover:shadow-rose-200">
                         Ver Pacotes
                     </a>
@@ -146,11 +152,17 @@
                     </a>
                 </div>
             </div>
-            <div class="lg:w-1/2 relative">
-                <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition duration-500 group">
-                    <!-- Imagem Principal (Substituir pela do bebê) -->
-                    <div class="bg-gray-200 h-[400px] lg:h-[500px] w-full flex items-center justify-center bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image: url('./img/foto_07.png')">
-                    </div>
+
+            <!-- Hero Image -->
+            <div class="w-full lg:w-1/2 relative flex justify-center">
+                <!-- Wrapper com rotação -->
+                <div class="relative z-10 w-full max-w-md lg:max-w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition duration-500 group rounded-image-container">
+                    <!-- CORREÇÃO: Usando tag IMG ao invés de div com background-image para garantir visibilidade no mobile -->
+                    <img 
+                        src="./img/foto_07.png" 
+                        alt="Bebê sorrindo no ensaio Smash the Cake"
+                        class="w-full h-[400px] lg:h-[500px] object-cover transition duration-700 group-hover:scale-105"
+                    >
                 </div>
                 <!-- Círculos decorativos -->
                 <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-rose-200 rounded-full blur-3xl -z-10"></div>
@@ -240,11 +252,12 @@
         </div>
         
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+            <!-- CORREÇÃO: Mudei para grid-cols-1 no mobile para as fotos não ficarem minúsculas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px] md:auto-rows-[200px]">
                 
                 <!-- Item 1 (Grande) -->
-                <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                     onclick="openLightbox('https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80', 'Smash the Cake', 'Aniversário')">
+                <div class="sm:col-span-2 sm:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
+                     onclick="openLightbox('./img/foto_01.png', 'Smash the Cake', 'Aniversário')">
                     <img src="./img/foto_01.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white">
                         <i data-lucide="zoom-in" width="32" class="mb-2"></i>
@@ -254,19 +267,19 @@
 
                 <!-- Item 2 -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                     onclick="openLightbox('https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80', 'Gestante Externo', 'Maternidade')">
+                     onclick="openLightbox('./img/foto_02.png', 'Gestante Externo', 'Maternidade')">
                     <img src="./img/foto_02.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <!-- Item 3 -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                     onclick="openLightbox('https://images.unsplash.com/photo-1510154221556-06256b365992?auto=format&fit=crop&w=800&q=80', 'Família no Estúdio', 'Família')">
+                     onclick="openLightbox('./img/foto_03.png', 'Família no Estúdio', 'Família')">
                     <img src="./img/foto_03.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <!-- Item 4 (Grande) -->
-                <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                     onclick="openLightbox('https://images.unsplash.com/photo-1608681288569-2f22c4f1c7d2?auto=format&fit=crop&w=800&q=80', 'Banho Splash', 'Diversão')">
+                <div class="sm:col-span-2 sm:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
+                     onclick="openLightbox('./img/foto_04.png', 'Banho Splash', 'Diversão')">
                     <img src="./img/foto_04.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white">
                         <i data-lucide="zoom-in" width="32" class="mb-2"></i>
@@ -276,13 +289,13 @@
                 
                  <!-- Item 5 -->
                  <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1519340241574-2291ec335c46?auto=format&fit=crop&w=800&q=80', 'Detalhes', 'Newborn')">
+                 onclick="openLightbox('./img/foto_05.png', 'Detalhes', 'Newborn')">
                 <img src="./img/foto_05.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <!-- Item 6 -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-                     onclick="openLightbox('https://images.unsplash.com/photo-1544126566-47aee3b925b4?auto=format&fit=crop&w=800&q=80', 'Acompanhamento', 'Bebê')">
+                     onclick="openLightbox('./img/foto_06.png', 'Acompanhamento', 'Bebê')">
                     <img src="./img/foto_06.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
